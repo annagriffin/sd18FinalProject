@@ -39,6 +39,59 @@ def create_pair(events):
     event = pair(activity, time)
     add_pair(events, event)
 
+def event_name(events, event):
+    temp1 = event
+    temp2 = list(temp1[0])
+    return temp2[0]
+
+def event_progress(events,event):
+    progress_bar_length = 50
+    event_slice = event
+    hours_complete = event_slice[1]
+    hours_wanted = list(event_slice[0])[1]
+    ratio = hours_complete / hours_wanted
+    how_far = int(progress_bar_length * ratio)
+    the_bar = "|"+ how_far*"|" + (progress_bar_length-how_far)*" "+"|"
+    return the_bar
+
+
+def display_progress(events):
+
+    for i in events:
+        print(event_name(events,i))
+        print(event_progress(events,i))
+
+def add_progress(events):
+    pos = 1
+    print("To which event would you like to add time to?")
+    for i in events:
+        print(str(pos)+". "+event_name(events,i))
+    event_position = getpass("Event Position:")
+    try:
+        int(event_position)
+        pos = int(event_position)
+    except ValueError:
+        print("Not a valid position")
+        return add_progress(events)
+
+    try:
+        0 <= pos <= len(events)
+        pos = int(event_position)
+    except False:
+        print("Not a valid position")
+        return add_progress(events)
+    event = events[pos-1]
+    add_hours = input("How many hours would you like to add?\n")
+
+    try:
+        int(add_hours)
+        add_hours = int(add_hours)
+    except ValueError:
+        print("Not a valid time.")
+        return add_progress(events)
+    event[1] = event[1]+ add_hours
+
+
 def user_input_loop():
 
     events = []
@@ -48,7 +101,9 @@ def user_input_loop():
         create_pair(events)
         flag = get_continue_message()
 
-    return print(events)
+    print(events)
+    add_progress(events)
+    display_progress(events)
 
 def get_continue_message():
 
