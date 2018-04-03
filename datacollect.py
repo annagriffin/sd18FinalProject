@@ -66,6 +66,7 @@ def add_progress(events):
     print("To which event would you like to add time to?")
     for i in events:
         print(str(pos)+". "+event_name(events,i))
+        pos += 1
     event_position = getpass("Event Position:")
     try:
         int(event_position)
