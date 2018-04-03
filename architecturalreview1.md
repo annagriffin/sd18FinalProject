@@ -15,7 +15,9 @@ We would like to take advantage of this opportunity by getting feedback regardin
 We are designing a productivity web app that focuses on time management and helps the user visualize their time. When interacting with the app, the user is able to input a list of activities and an amount of time they want to designate to that task over a specified time interval. Over the course of the time interval, the user will be able to update their progress for eah goal which will be displayed visually. The progress data will be supplemented with a visualization of how they are spending their time as a whole. The goal of this project is to help people who want to spend more time doing things they enjoy by minimizing the constant pressure to always be doing work in order to feel productive. By deciding beforehand a list of things you want to spend your time doing, our hope is that then you will be more inclined to set aside time for these activities.
 
 Inline-Style:
-![alt text](https://github.com/annagriffin/sd18FinalProject/blob/master/AppDraft.pdf "Label")
+![alt text][logo]
+
+[logo]: https://github.com/annagriffin/sd18FinalProject/blob/master/AppDraft.pdf "Label"
 
 
 ## Key questions
