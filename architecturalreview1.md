@@ -1,20 +1,18 @@
-Architectural Review
-
-Software Design, Spring 2018
-
-Anna Griffin and Luis F. Zuniga
+# Architectural Review
+##### Software Design, Spring 2018
+##### Anna Griffin and Luis F. Zuniga
 
 
 ### Goal:
 We would like to take advantage of this opportunity by getting feedback regarding our ideas for the code structure and the usefulness of this app design. At the moment, we are both trying to become more comfortable with Flask and implement basic versions of the features we want to include. We are getting more familiar with new aspects of programming and getting a sense of what we need to do down the road. While designing, it is important to us that we keep the user in mind. One of our main goals was to design an app to help people, so as we continue throughout the development of this app, we want to make sure we stick to that and listen to potential users’ thoughts.
 
-### Background and context
+## Background and context
 #### What information about your project does the audience need to participate fully in the technical review? You should share enough to make sure your audience understands the questions you are asking, but without going into unnecessary detail.
 
 
 We are designing a productivity web app that focuses on time management and helps the user visualize their time. When interacting with the app, the user is able to input a list of activities and an amount of time they want to designate to that task over a specified time interval. Over the course of the time interval, the user will be able to update their progress for eah goal which will be displayed visually. The progress data will be supplemented with a visualization of how they are spending their time as a whole. The goal of this project is to help people who want to spend more time doing things they enjoy by minimizing the constant pressure to always be doing work in order to feel productive. By deciding beforehand a list of things you want to spend your time doing, our hope is that then you will be more inclined to set aside time for these activities.
 
-Inline-Style
+
 ![alt text][logo]
 
 [logo]: https://github.com/annagriffin/sd18FinalProject/blob/master/App%20Draft.png "Label"
