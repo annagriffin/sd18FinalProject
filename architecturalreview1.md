@@ -17,7 +17,7 @@ We are designing a productivity web app that focuses on time management and help
 Inline-Style:
 ![alt text][logo]
 
-[logo]: https://github.com/annagriffin/sd18FinalProject/blob/master/AppDraft.pdf "Label"
+[logo]: https://github.com/annagriffin/sd18FinalProject/blob/master/AppDraft.png "Label"
 
 
 ## Key questions
