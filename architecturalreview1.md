@@ -20,10 +20,10 @@ We are designing a productivity web app that focuses on time management and help
 
 ## Key questions
 #### What do you want to learn from the review? What are the most important decisions your team is currently contemplating? Where might an outside perspective be most helpful? As you select key questions to ask during the review, bear in mind both the time limitations and background of your audience.
-1. At this stage of the project, the following are our key questions:
-2. Are there any features that we’ve discussed that seem outside the scope of the project?
-3. Are there any features that we did not discuss that seem important to our project vision?
-4. What appear to be the toughest parts of this project?
+At this stage of the project, the following are our key questions:
+1. Are there any features that we’ve discussed that seem outside the scope of the project?
+2. Are there any features that we did not discuss that seem important to our project vision?
+3. What appear to be the toughest parts of this project?
 5/Do you see any points that could be cool opportunities for ourselves to push our current programming knowledge?
 
 
