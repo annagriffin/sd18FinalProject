@@ -1,12 +1,19 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
+all_activities = []
+
 @app.route('/')
-def get_information():
+def maindisplay():
+    return render_template('front_page.html', activities=all_activities)
+
+@app.route('/inputmenu')
+def get_input():
     return render_template('questions.html')
 
-@app.route('/display', methods = ['POST', 'GET'])
+@app.route('/', methods = ['POST', 'GET'])
 def show_progress_bar():
+
 
     if request.method == 'POST':
         result = request.form
@@ -15,7 +22,14 @@ def show_progress_bar():
                 activity=value
             if key == 'time':
                 time=value
-    return render_template('display.html', activity=activity, time=time)
+
+        time = int(time)
+        print(type(time))
+        pair = (activity,time)
+        package = [pair, 0]
+        all_activities.append(package)
+
+    return render_template('front_page.html', activities=all_activities)
 
 
 
