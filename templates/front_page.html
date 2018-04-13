@@ -7,9 +7,10 @@
     <title> Hello! </title>
 
     {% for each in activities %}
-    <p> Activity: {{each[0]}}</p>
-    <p> Time: {{each[1]}}</p>
-    <form action="/inputmenu">
+    <p> Activity: {{each[0][0]}}</p>
+    <p> Total Time: {{each[0][1]}}</p>
+    <p> Progress Time: {{each[1]}}</p>
+    <form action="/">
       <input type="submit" value="Add Time">
     </form>
     {% endfor %}

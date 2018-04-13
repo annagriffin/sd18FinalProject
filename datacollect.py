@@ -1,3 +1,7 @@
+# This file contains the very basic functions of our app and the scafolding of the user experience. The user can add an activity and a time
+# and continue adding pairs of those until they decide they are finished. The user is also able to update their progress and a visual of their progress
+# supplements their input.
+
 from getpass import getpass
 
 

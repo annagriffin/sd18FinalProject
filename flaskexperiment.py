@@ -1,4 +1,8 @@
+# This file has a very brief example of what the experince of adding an activity and time will be like for the user.
+# Right now the buttons are not fully functioning but the adding events and times functionaltiy is there
+
 from flask import Flask, render_template, request
+import datacollect
 app = Flask(__name__)
 
 all_activities = []
@@ -22,7 +26,7 @@ def show_progress_bar():
                 activity=value
             if key == 'time':
                 time=value
-
+        print(result)
         time = int(time)
         print(type(time))
         pair = (activity,time)
