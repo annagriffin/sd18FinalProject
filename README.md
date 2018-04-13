@@ -33,11 +33,11 @@ Flask(Version 0.12.2 )
 
 The necessary Python packages can be downloaded using
 
-'''$ sudo pip install -r requirements.txt'''
+`$ sudo pip install -r requirements.txt`
 
 ### Usage
 To run the code, pull the necessary files and use the command
-'''$ python flaskexperiment.py'''
+`$ python flaskexperiment.py`
 
 The program can then be accessed locally using a web browser. The HTML page displayed will be the Web App’s front page.
 
