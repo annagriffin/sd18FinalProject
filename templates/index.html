@@ -1,0 +1,29 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Time Tracker App
+{% endblock %}
+
+
+
+{% block content %}
+  <nav>
+    <button type="button" data-toggle="collapse" data-garget="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span> Toggle navigation</span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a href="#">Time Tracker</a>
+
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+    </ul>
+  </nav>
+
+  <h1>Bootstrap starter template</h1>
+ <p>Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+
+ {% endblock %}
