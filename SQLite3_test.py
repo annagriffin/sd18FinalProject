@@ -61,7 +61,8 @@ def update_activity(conn, task):
                 SET activity = ? ,
                     time_goal = ? ,
                     time_done = ?
-                WHERE id = ?'''
+                WHERE activity = ?
+                AND user_id = ?'''
     cur = conn.cursor()
     cur.execute(sql, task)
 
@@ -72,7 +73,7 @@ def delete_activity(conn, id):
     :param id: id of the task
     :return:
     """
-    sql = 'DELETE FROM Activities WHERE id=?'
+    sql = 'DELETE FROM Activities WHERE activity = ? AND user_id=?'
     cur = conn.cursor()
     cur.execute(sql, (id,))
     pass
@@ -101,7 +102,6 @@ def main():
                                         time_goal integer NOT NULL,
                                         time_done integer NOT NULL,
                                         user_id integer NOT NULL,
-                                        id integer PRIMARY KEY,
                                         FOREIGN KEY (user_id) REFERENCES Users (username)
                                     ); """
     #creates the connection
@@ -134,10 +134,10 @@ def main():
         create_activity(conn, activity_2)
 
         #Update and activity
-        update_activity(conn, ('Sleeping',24,20,2))
+        update_activity(conn, ('Sleeping',24,20, 'Sleeping', 1))
 
         #Delete the second activity_1
-        delete_activity(conn, 2)
+        #delete_activity(conn, ('Gardening', 2))
     # Query the db. Shows all the activities in table Activities
     cur = conn.cursor()
     cur.execute("SELECT * FROM Activities")
