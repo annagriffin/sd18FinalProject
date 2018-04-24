@@ -133,8 +133,8 @@ def main():
         create_activity(conn, activity_1)
         create_activity(conn, activity_2)
 
-        #Update an activity
-        update_activity(conn, ('Sleeping',24,20, "Sleeping", 3))
+        #Update and activity
+        update_activity(conn, ('Sleeping',24,20, 'Sleeping', 1))
 
         #Delete the second activity_1
         #delete_activity(conn, ('Gardening', 2))
