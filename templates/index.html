@@ -1,29 +1,64 @@
 {% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}
 Time Tracker App
 {% endblock %}
 
 
-
 {% block content %}
-  <nav>
-    <button type="button" data-toggle="collapse" data-garget="#navbar" aria-expanded="false" aria-controls="navbar">
-      <span> Toggle navigation</span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <a href="#">Time Tracker</a>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="{{ url_for('login') }}">Login</a></li>
-      <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-    </ul>
-  </nav>
 
-  <h1>Bootstrap starter template</h1>
- <p>Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Time Tracker</a>
+    </div>
+
+      <ul class="nav navbar-nav">
+        <li calss="active"><a href="{{ url_for('dashboard') }}">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
+      </ul>
+    </div>
+</nav>
+
+<div class="container">
+<div class="jumbotron vertical-center">
+<div class="container">
+  <h1> Welcome to Time Tracker! </h1>
+  <p> [short short Description] </p>
+  <form method='POST' action='/'>
+    <h2> Please Login </h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.username) }}
+    {{ wtf.form_field(form.password) }}
+    {{ wtf.form_field(form.remember) }}
+    <button type="submit" class="btn btn-primary">Log in</button>
+  </form>
+</div>
+</div>
+</div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="container">
+        <p>New to Time Tracker?<span>
+        <a href="{{ url_for('signup') }}">Sign Up</span></a></p>
+      <div>
+    </div>
+  </div>
+</div>
+
 
  {% endblock %}

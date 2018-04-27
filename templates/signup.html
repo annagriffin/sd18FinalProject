@@ -7,14 +7,46 @@ Sign Up
 
 
 {% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<form method="POST" action='/signup'>
-  <h2>Sign Up</h2>
-  {{ form.hidden_tag() }}
-  {{ wtf.form_field(form.username) }}
-  {{ wtf.form_field(form.email) }}
-  {{ wtf.form_field(form.password) }}
-  <button type="submit">Sign Up</button>
-</form>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Time Tracker</a>
+    </div>
+
+      <ul class="nav navbar-nav">
+        <li calss="active"><a href="{{ url_for('dashboard') }}">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
+      </ul>
+    </div>
+</nav>
+
+<div class="container">
+  <div class="panel panel-default">
+        <div class="panel-body">
+    <div class="container-fluid">
+        <form method="POST" action='/signup'>
+          <h2>Create a New Account</h2>
+          {{ form.hidden_tag() }}
+          {{ wtf.form_field(form.username) }}
+          {{ wtf.form_field(form.email) }}
+          {{ wtf.form_field(form.password) }}
+          <button type="submit" class="btn btn-primary">Create my Account</button>
+        </form>
+      </div>
+  </div>
+</div>
+</div>
 
 {% endblock %}

@@ -1,0 +1,20 @@
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+New Activity
+{% endblock %}
+
+{% block content %}
+
+<form method='POST' action='/add_activity'>
+  <h2> Add a New Activity </h2>
+  {{ form.hidden_tag() }}
+  {{ wtf.form_field(form.activity_name) }}
+  {{ wtf.form_field(form.goal_time) }}
+  <button type="submit">Add</button>
+</form>
+
+
+{% endblock %}
