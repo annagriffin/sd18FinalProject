@@ -88,8 +88,24 @@ def delete_all_activities(conn):
     cur = conn.cursor()
     cur.execute(sql)
 
+def menu(conn):
+    """
+    Acts as a menu
+    """
+    print("What would you like to do? \n 1.Create Activity \n 2.Update Activity \n 3.Delete Activity")
+    choice = int(input("Please enter a valid integer... \n"))
+    if choice == 1:
+        return 1
+    elif choice == 2:
+        return 2
+    elif choice == 3:
+        return 3
+    else:
+        return menu(conn)
+
+
 def main():
-    database = "database.db"
+    database = "activities.db"
 
     #Creates the table if id didn't already exist
     sql_create_users_table = """ CREATE TABLE IF NOT EXISTS Users (
@@ -109,6 +125,7 @@ def main():
 
     # Validating the connection
     if conn is not None:
+
         # create the activities table
         create_table(conn, sql_create_users_table)
         print('Users Table Created')
@@ -120,21 +137,41 @@ def main():
 
     # Adding an event
     with conn:
+
+
         # create a new user
         # Name, Username, Password
         user = ('Test_Dummy', 'username','password')
         user_id = create_user(conn, user)
+        print(user_id)
+        choice = menu(conn)
+
+        if choice == 1:
+            #create
+            activity_name = input('What activity would you like to do?')
+            activity_time = int(input('How long would you like to do this activity?'))
+            activity_1 = (activity_name, activity_time, 0, user_id)
+            create_activity(conn, activity_1)
+        elif choice == 2:
+            #update
+            activity_name = input('Which activity would you like to update?')
+            activity_time_update = int(input('How many hours have been completed?'))
+            update_activity(conn, ('Sleeping',24,activity_time_update, activity_name, user_id))
+        elif choice == 3:
+            #delete
+            activity_name = input('Which activity would you like to delete?')
+            delete_activity(conn, (activity_name, user_id))
 
         # tasks
         # activity, time_goal, time_done, user_id
-        activity_1 = ('Gardening', 10, 0, user_id)
-        activity_2 = ('Sleeping', 28, 10, user_id)
+        #activity_1 = ('Gardening', 10, 0, user_id)
+        #activity_2 = ('Sleeping', 28, 10, user_id)
 
-        create_activity(conn, activity_1)
-        create_activity(conn, activity_2)
+        #create_activity(conn, activity_1)
+        #create_activity(conn, activity_2)
 
         #Update and activity
-        update_activity(conn, ('Sleeping',24,20, 'Sleeping', 1))
+        #update_activity(conn, ('Sleeping',24,20, 'Sleeping', 1))
 
         #Delete the second activity_1
         #delete_activity(conn, ('Gardening', 2))
