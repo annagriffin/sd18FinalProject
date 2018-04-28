@@ -1,3 +1,4 @@
+
 # https://www.youtube.com/watch?v=8aTnmsDMldY
 
 from flask import Flask, render_template, redirect, url_for
@@ -12,7 +13,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'Thisissupposedtobesecret!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/SoftDesFinal/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/anna/FinalProject/database.db'
 Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -104,6 +105,8 @@ def signup():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
+
+
     return render_template('dashboard.html', user=current_user.username)
 
 @app.route('/add_activity', methods=['GET', 'POST'])
