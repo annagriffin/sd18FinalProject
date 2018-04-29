@@ -1,7 +1,7 @@
 
 # https://www.youtube.com/watch?v=8aTnmsDMldY
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for,request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, IntegerField
@@ -27,7 +27,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
-    # activity_list = db.Column(db.String(80))
+
 
 class Activity(db.Model):
 
@@ -56,6 +56,7 @@ class ActivitiesForm(FlaskForm):
     activity_name = StringField("Activity", validators=[InputRequired(), Length(min=1, max=100)])
     goal_time = IntegerField("Time", validators=[InputRequired()])
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = LoginForm()
@@ -68,25 +69,7 @@ def index():
                 return redirect(url_for('dashboard'))
         return '<h1>Invalid username or password</h1>'
 
-        # return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
     return render_template('index.html', form=form)
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     form = LoginForm()
-#
-#     if form.validate_on_submit():
-#         print('Worked')
-#         user = User.query.filter_by(username=form.username.data).first()
-#         if user:
-#             if check_password_hash(user.password, form.password.data):
-#                 login_user(user, remember=form.remember.data)
-#                 return redirect(url_for('dashboard'))
-#         return '<h1>Invalid username or password</h1>'
-#         return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
-#
-#     return render_template('login.html', form=form)
-
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -98,16 +81,43 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('index'))
-        # return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
 
     return render_template('signup.html', form=form)
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
+    users_name = current_user.username.capitalize()
+    activity = Activity.query.filter_by(user_id=str(current_user)).all()
+
+    i = 0
+    complete_list = []
+    while i < len(activity):
+        temp_list = []
+        temp_list.append(activity[i].activity_name.capitalize())
+        temp_list.append(activity[i].goal_time)
+        temp_list.append(activity[i].progress)
+        color_determiner = i % 4
+        if color_determiner == 0:
+            color_determiner = 'success'
+        if color_determiner == 1:
+            color_determiner = 'info'
+        if color_determiner == 2:
+            color_determiner = 'warning'
+        if color_determiner == 3:
+            color_determiner = 'danger'
+        temp_list.append(color_determiner)
+        complete_list.append(temp_list)
+        i += 1
 
 
-    return render_template('dashboard.html', user=current_user.username)
+    if request.method == 'POST':
+        tag = int(request.form['tag'])
+        activity[tag].progress += 1
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+
+    return render_template('dashboard.html', user=users_name, complete_list=complete_list) # activity_list=activity_list, time_goal_list=time_goal_list, current_progress_list=current_progress_list)
 
 @app.route('/add_activity', methods=['GET', 'POST'])
 @login_required
