@@ -111,13 +111,117 @@ def dashboard():
         i += 1
 
 
+    # if request.method == 'POST':
+    #     tag = int(request.form['tag'])
+    #     activity[tag].progress += 1
+    #     db.session.commit()
+    #     return redirect(url_for('dashboard'))
+
+    return render_template('dashboard.html', user=users_name, complete_list=complete_list) # activity_list=activity_list, time_goal_list=time_goal_list, current_progress_list=current_progress_list)
+
+
+@app.route('/add', methods=['GET', 'POST'])
+@login_required
+def add():
+    users_name = current_user.username.capitalize()
+    activity = Activity.query.filter_by(user_id=str(current_user)).all()
+
+    i = 0
+    complete_list = []
+    while i < len(activity):
+        temp_list = []
+        temp_list.append(activity[i].activity_name.capitalize())
+        temp_list.append(activity[i].goal_time)
+        temp_list.append(activity[i].progress)
+        color_determiner = i % 4
+        if color_determiner == 0:
+            color_determiner = 'success'
+        if color_determiner == 1:
+            color_determiner = 'info'
+        if color_determiner == 2:
+            color_determiner = 'warning'
+        if color_determiner == 3:
+            color_determiner = 'danger'
+        temp_list.append(color_determiner)
+        complete_list.append(temp_list)
+        i += 1
+
     if request.method == 'POST':
-        tag = int(request.form['tag'])
+        tag = int(request.form['tag_a'])
         activity[tag].progress += 1
         db.session.commit()
         return redirect(url_for('dashboard'))
 
-    return render_template('dashboard.html', user=users_name, complete_list=complete_list) # activity_list=activity_list, time_goal_list=time_goal_list, current_progress_list=current_progress_list)
+    return render_template('dashboard.html', user=users_name, complete_list=complete_list)
+
+@app.route('/subtract', methods=['GET', 'POST'])
+@login_required
+def subtract():
+    users_name = current_user.username.capitalize()
+    activity = Activity.query.filter_by(user_id=str(current_user)).all()
+
+    i = 0
+    complete_list = []
+    while i < len(activity):
+        temp_list = []
+        temp_list.append(activity[i].activity_name.capitalize())
+        temp_list.append(activity[i].goal_time)
+        temp_list.append(activity[i].progress)
+        color_determiner = i % 4
+        if color_determiner == 0:
+            color_determiner = 'success'
+        if color_determiner == 1:
+            color_determiner = 'info'
+        if color_determiner == 2:
+            color_determiner = 'warning'
+        if color_determiner == 3:
+            color_determiner = 'danger'
+        temp_list.append(color_determiner)
+        complete_list.append(temp_list)
+        i += 1
+
+    if request.method == 'POST':
+        tag = int(request.form['tag_s'])
+        activity[tag].progress -= 1
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+
+    return render_template('dashboard.html', user=users_name, complete_list=complete_list)
+
+@app.route('/clear', methods=['GET', 'POST'])
+@login_required
+def clear():
+    users_name = current_user.username.capitalize()
+    activity = Activity.query.filter_by(user_id=str(current_user)).all()
+
+    i = 0
+    complete_list = []
+    while i < len(activity):
+        temp_list = []
+        temp_list.append(activity[i].activity_name.capitalize())
+        temp_list.append(activity[i].goal_time)
+        temp_list.append(activity[i].progress)
+        color_determiner = i % 4
+        if color_determiner == 0:
+            color_determiner = 'success'
+        if color_determiner == 1:
+            color_determiner = 'info'
+        if color_determiner == 2:
+            color_determiner = 'warning'
+        if color_determiner == 3:
+            color_determiner = 'danger'
+        temp_list.append(color_determiner)
+        complete_list.append(temp_list)
+        i += 1
+
+    if request.method == 'POST':
+        tag = int(request.form['tag_c'])
+        activity[tag].progress = 0
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+
+    return render_template('dashboard.html', user=users_name, complete_list=complete_list)
+
 
 @app.route('/add_activity', methods=['GET', 'POST'])
 @login_required
