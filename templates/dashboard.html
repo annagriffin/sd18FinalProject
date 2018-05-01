@@ -5,6 +5,8 @@ Dashboard
 {% endblock %}
 
 {% block content %}
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -36,90 +38,89 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 
 <div class="container">
   <div class="col-md-12 text-center">
-  <a href="add_activity" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span></a>
+  <a href="add_activity" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span></a>
   </div>
 </div>
+
 <div class="continer">
-
   {% for each in complete_list %}
-
   <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-6">
             <h4> {{ each[0] }} </h4>
           </div>
-          <div class="panel-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <p>Current Total: {{ each[2] }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <p>Goal: {{ each[1] }}</p>
-                </div>
-                <div class="col-md-6 text-right">
-                  <p>{{ (each[2] / each[1]) * 100 }} %</p>
-                </div>
-              </div>
-            <div class="progress">
-              <div class="progress-bar progress-bar-{{ each[3] }}" role="progressbar" aria-valuenow="{{ (each[2] / each[1]) * 100 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ (each[2] / each[1]) * 100 }}%;">
-                <span class="sr-only">{{ (each[2] / each[1]) * 100 }} Complete</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-1 text-right">
-                <form method="POST" action='/add'>
-                  <span class="sr-only"><input value='{{ complete_list.index(each) }}' name="tag_a"></span>
-                  {% if each[1] ==  each[2] %}
-                  <button type="submit" class="btn btn-primary disabled">Add</button>
-                  {% else %}
-                  <button type="submit" class="btn btn-primary">Add</button>
-                  {% endif %}
-                </form>
-              </div>
-              <div class="col-md-1 text-left">
-                <form method="POST" action='/subtract'>
-                  <span class="sr-only"><input value='{{ complete_list.index(each) }}' name="tag_s"></span>
-                  {% if each[2] == 0 %}
-                  <button type="submit" class="btn btn-primary disabled">Subtract</button>
-                  {% else %}
-                  <button type="submit" class="btn btn-primary">Subtract</button>
-                  {% endif %}
-                </form>
-              </div>
-              <div class="col-md-1 text-right">
-                <form method="POST" action='/clear'>
-                  <span class="sr-only"><input value='{{ complete_list.index(each) }}' name="tag_c"></span>
-                  <button type="submit" class="btn btn-primary">Clear</button>
-                </form>
-              </div>
-            </div>
+          <div class="col-md-6 text-right">
+            <form method="POST" action='/delete'>
+              <span class="sr-only"><input value='{{ complete_list.index(each) }}' name="tag_d"></span>
+              <button type="submit" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></button>
+            </form>
           </div>
         </div>
       </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Current Total: {{ each[2] }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Goal: {{ each[1] }}</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <p>{{ (each[2] / each[1]) * 100 }} %</p>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-{{ each[3] }}" role="progressbar" aria-valuenow="{{ (each[2] / each[1]) * 100 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ (each[2] / each[1]) * 100 }}%;">
+            <span class="sr-only">{{ (each[2] / each[1]) * 100 }} Complete</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+          </div>
+          <div class="col-md-1">
+          </div>
+          <!-- <div class="col-md-1">
+          </div> -->
+          <div class="col-md-1 text-right">
+            <form method="POST" action='/add'>
+              <span class="sr-only"><input value='{{ complete_list.index(each) }}' name="tag_a"></span>
+              {% if each[1] ==  each[2] %}
+              <button type="submit" class="btn btn-primary disabled">Add</button>
+              {% else %}
+              <button type="submit" class="btn btn-primary">Add</button>
+              {% endif %}
+            </form>
+            </div>
+            <div class="col-md-2 text-center">
+              <form method="POST" action='/subtract'>
+                <span class="sr-only"><input value='{{ complete_list.index(each) }}' name="tag_s"></span>
+                {% if each[2] == 0 %}
+                <button type="submit" class="btn btn-primary disabled">Subtract</button>
+                {% else %}
+                <button type="submit" class="btn btn-primary">Subtract</button>
+                {% endif %}
+              </form>
+            </div>
+            <div class="col-md-2">
+              <form method="POST" action='/clear'>
+                <span class="sr-only"><input value='{{ complete_list.index(each) }}' name="tag_c"></span>
+                <button type="submit" class="btn btn-primary">Clear</button>
+              </form>
+            </div>
+          </div>
+      </div>
     </div>
+  </div>
+{% endfor %}
+</div>
 
 
-  {% endfor %}
+
+
 </body>
 
 
