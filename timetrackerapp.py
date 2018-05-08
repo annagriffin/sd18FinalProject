@@ -10,6 +10,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 from forms import LoginForm, ActivitiesForm, RegisterForm
 
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'Thisissupposedtobesecret!'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/anna/FinalProject/database.db'
@@ -41,6 +42,7 @@ class Activity(db.Model):
     activity_name = db.Column(db.String(15))
     goal_time = db.Column(db.Integer)
     progress = db.Column(db.Integer)
+
 
 
 @login_manager.user_loader
@@ -95,6 +97,7 @@ def create_complete_list():
     i = 0
     num_color = 4
     complete_list = []
+    print(type(activity))
     while i < len(activity):
         temp_list = []
         temp_list.append(activity[i].activity_name.capitalize())
@@ -105,13 +108,13 @@ def create_complete_list():
         # color cycle and are used in the html
         color_determiner = i % num_color
         if color_determiner == 0:
-            color_determiner = 'success'
-        if color_determiner == 1:
-            color_determiner = 'info'
-        if color_determiner == 2:
-            color_determiner = 'warning'
-        if color_determiner == 3:
             color_determiner = 'danger'
+        if color_determiner == 1:
+            color_determiner = 'warning'
+        if color_determiner == 2:
+            color_determiner = 'info'
+        if color_determiner == 3:
+            color_determiner = 'success'
         temp_list.append(color_determiner)
         complete_list.append(temp_list)
         i += 1
