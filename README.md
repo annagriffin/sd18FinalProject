@@ -20,7 +20,7 @@ Login Authentication Test Code - https://pythonspot.com/login-authentication-wit
 
 ![alt text][logo]
 
-[logo]: https://github.com/annagriffin/sd18FinalProject/blob/master/diagrammap.jpg "Label"
+[logo]: https://github.com/annagriffin/sd18FinalProject/blob/master/classwork/diagrammap.jpg "Label"
 
 
 ### Getting Started
@@ -45,6 +45,10 @@ Pressing the “Add Activity” button will redirect to the questions HTML page 
 
 Using the “Submit” button will direct you back to the front page, and the input from the questions page will be displayed.
 
+### Class Deliverables
+
+Poster: [here](https://docs.google.com/presentation/d/1jfbshOqn3mo3TC9JAfPMA0X-XfpN5E08UBfDsK2yLOc/edit?usp=sharing)
+Video: [here]
 
 ### License
 
