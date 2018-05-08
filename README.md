@@ -2,7 +2,7 @@
 Luis and Anna Final Project - SoftwareDesign
 
 
-## Time Tracker [Working Title]
+## Time Tracker
 
 ### Description
 This program allows users to keep better track of their time and helps them make time for the things they want to, but can never find the time to, do. Each user is able to make an account to save their activities and progress. Upon starting the desired time interval, typically a week, the user has the opportunity to add various activities that they value and know they want to put time into. After setting the activities and choosing a total amount of time to spend on it over the specified time interval, a progress bar will be created for each unique activity. As time progresses, the user is able to add or subtract time from their progress while viewing a live representation of how close to their goal they are.
@@ -48,7 +48,7 @@ Using the “Submit” button will direct you back to the front page, and the in
 ### Class Deliverables
 
 Poster: [here](https://docs.google.com/presentation/d/1jfbshOqn3mo3TC9JAfPMA0X-XfpN5E08UBfDsK2yLOc/edit?usp=sharing)
-Video: [here]
+Video: [here](https://youtu.be/hYxAhH6Ok8Y)
 
 ### License
 
